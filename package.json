@@ -1,0 +1,18 @@
+{ "name"          : "couchnomnom"
+, "author"        : "Nuno Job <nunojobpinto@gmail.com> (http://nunojob.com)"
+, "description"   : "Replicate all your couchdb databases from A to B"
+, "keywords"      :
+  ["couchdb", "tool", "replicate", "replication", "json", "bootstrap"]
+, "version"       : "0.0.1"
+, "repository"    :
+  { "type"        : "git"
+  , "url"         : "http://github.com/dscape/couchnomnom.git"
+  }
+, "preferGlobal"  : true
+, "dependencies"  :
+  { "replicate"   : "0.0.1"
+  , "jsontool"    : "2.0.3"
+  }
+, "bin"           : { "couchnomnom" : "./bin/couchnomnom" }
+, "engines"       : { "node" : ">=0.4.1" }
+}
