@@ -14,5 +14,4 @@
   , "jsontool"    : "2.0.3"
   }
 , "bin"           : { "couchnomnom" : "./bin/couchnomnom" }
-, "engines"       : { "node" : ">=0.4.1" }
 }
