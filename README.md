@@ -1,5 +1,7 @@
 # couchnomnom
 
+replicate all your couchdb databases from one star to another.
+
 ```
                                               .
                        *
@@ -28,8 +30,6 @@
                              .                      .
     *            .                       .
 ```
-
-replicate all your CouchDB databases from one host to another
 
 ## installation
 
