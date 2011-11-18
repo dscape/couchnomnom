@@ -34,6 +34,7 @@ replicate all your couchdb databases from one star to another.
 ## installation
 
 install [npm][1]:
+
 ``` sh
 curl http://npmjs.org/install.sh | sh
 ```
