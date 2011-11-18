@@ -9,9 +9,6 @@
   , "url"         : "http://github.com/dscape/couchnomnom.git"
   }
 , "preferGlobal"  : true
-, "dependencies"  :
-  { "replicate"   : "0.0.1"
-  , "jsontool"    : "2.0.3"
-  }
+, "scripts"       : { "preinstall"  : "npm install -g replicate jsontool" }
 , "bin"           : { "couchnomnom" : "./bin/couchnomnom" }
 }
