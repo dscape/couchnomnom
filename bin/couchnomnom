@@ -18,33 +18,38 @@ if [ "$NOMNOM_DEBUG" != "" ]; then
 fi
 
 # two arguments are required
-if [ $# != 2 ]; then
-  echo "Usage: $0 user:pass@master-hostname user:pass@copy-hostname";
-else
-  # see usage
-  echo "replicating from $1 to $2";
-  # [sudo] npm install -g replicate follow request formidable jsontool
-  for i in $(curl -# -L http://$1/_all_dbs  | json -a);
-  do
-    echo "  $1/$i > $2/$i";
-    # first try at replication
-    local cmd="replicate http://$1/$i http://$2/$i 2>&1 | grep Error | wc -l";
-    local ok=$(eval $cmd);
-    if [ $ok != "1" ]; then
-      echo "    + ok"; # worked
-    else
-      echo "    - fail";
-      echo "      retrying";
-      # most likely fail is the database doesn't exist in the copy
-      curl -sX PUT http://$2/$i 2>&1 > /dev/null;
-      local ok2=$(eval $cmd);
-      if [ $ok2 != "1" ]; then
-        echo "      + ok"; # hunch was right
+function main () {
+  if [ $# != 2 ]; then
+    echo "Usage: $0 user:pass@master-hostname user:pass@copy-hostname";
+    return 0;
+  else
+    # see usage
+    echo "replicating from $1 to $2";
+    # [sudo] npm install -g replicate follow request formidable jsontool
+    for i in $(curl -# -L http://$1/_all_dbs  | json -a);
+    do
+      echo "  $1/$i > $2/$i";
+      # first try at replication
+      local cmd="replicate http://$1/$i http://$2/$i 2>&1 | grep Error | wc -l";
+      local ok=$(eval $cmd);
+      if [ $ok != "1" ]; then
+        echo "    + ok"; # worked
       else
-        echo "      - failed again"; # was something else, bad luck
-        echo "         diy";
-        echo "         $cmd";
+        echo "    - fail";
+        echo "      retrying";
+        # most likely fail is the database doesn't exist in the copy
+        curl -sX PUT http://$2/$i 2>&1 > /dev/null;
+        local ok2=$(eval $cmd);
+        if [ $ok2 != "1" ]; then
+          echo "      + ok"; # hunch was right
+        else
+          echo "      - failed again"; # was something else, bad luck
+          echo "         diy";
+          echo "         $cmd";
+        fi;
       fi;
-    fi;
-  done
-fi
+    done
+  fi
+}
+
+main "$@"

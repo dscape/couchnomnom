@@ -3,12 +3,15 @@
 , "description"   : "Replicate all your couchdb databases from A to B"
 , "keywords"      :
   ["couchdb", "tool", "replicate", "replication", "json", "bootstrap"]
-, "version"       : "0.0.1"
+, "version"       : "0.0.2"
 , "repository"    :
   { "type"        : "git"
   , "url"         : "http://github.com/dscape/couchnomnom.git"
   }
 , "preferGlobal"  : true
-, "scripts"       : { "preinstall"  : "npm install -g replicate jsontool" }
+, "dependencies"  :
+  { "replicate"   : "0.0.x"
+  , "jsontool"    : "2.0.3"
+  }
 , "bin"           : { "couchnomnom" : "./bin/couchnomnom" }
 }
