@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/dscape/couchnomnom.png)](http://travis-ci.org/dscape/couchnomnom)
 # couchnomnom
 
 replicate all your couchdb databases from one star to another.
